@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>Login form</title>
+    <link rel="stylesheet" href="loginstyle.css">
+    <link href="image/todologo.png" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <img src="./image/todologo.png" style="margin-left:185px; width: 90px;position:relative; margin-bottom: 20px; " alt="">
+        <div class="card">
+            <div class="inner-box">
+                <div class="card-front">
+                        <h2 style="font-size: 40px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Login</h2>
+
+                    <form method="post" onsubmit="return loginFunction()">
+                        <input style="border: 3px solid black;height: 55px;" type="email" id="email" class="input-box" placeholder="Your Email" required>
+                        <input style="border: 3px solid black;height: 55px;" type="password" id="password" class="input-box" placeholder="Your Password" required>
+                        <input style="margin-bottom: 140px;margin-top: 20px;"  type="checkbox"><span style="font-size: 20px;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Remember user</span>
+                        <a style="text-decoration: none;color: aliceblue;font-size: 20px;margin-left: 30px;" href="forgotpass.html">Forgot pass</a>
+                        <button style="margin-bottom: 20px;margin-right: 90px;margin-left: 78px;position: absolute;" type="submit" class="submit-btn"><p>Login</p></button>
+                        <p style="margin-left: 30px;margin-top:50px;color: black;text-decoration: none;font-size: 20px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Don't have an account? <a style="text-decoration: none;color: aliceblue;" href="register.html">Register here</a></p>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var jwt = localStorage.getItem("jwt");
+        var uid = null;
+        var client = null;
+
+        function alo123() {
+            console.log(jwt);
+            
+        }    
+
+        
+        if (jwt != null) {
+            window.location.href = 'todayschedule.html';
+        }
+
+        function loginFunction() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email == "") {
+                Swal.fire({
+                    text: 'Login failed! Your email is null',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                return false;
+            } else if (password == "") {
+                Swal.fire({
+                    text: 'Login failed! Your password is null',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                return false;
+            } else {
+                const request = new XMLHttpRequest();
+                request.open("POST", "https://dev.thanqminh.com:3001/auth/sign_in");
+                request.setRequestHeader("Content-Type", "application/json");
+                
+                request.send(JSON.stringify({
+                    "email": email,
+                    "password": password
+                }));
+                request.onreadystatechange = function () {
+                    if (this.readyState == 4) {
+                        jwt = request.getResponseHeader('Access-Token');
+                        uid = request.getResponseHeader('Uid');
+                        client = request.getResponseHeader('Client');
+                        var text = JSON.parse(this.responseText);
+                        localStorage.setItem('jwt', jwt);
+                        localStorage.setItem('uid', uid);
+                        localStorage.setItem('client', client);
+                        localStorage.setItem('password', password);
+                        localStorage.setItem('name', text['data']['name']);
+                        console.log(jwt);
+                        console.log(uid);
+                        console.log(client);
+                        console.log(text);
+                        if (this.status == 200) {
+                            Swal.fire({
+                                text: 'Login successful',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = 'todayschedule.html';
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                text: 'Login failed! Your account is not existed. Check your email or password again',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    }
+
+                    
+                }
+                return false;
+            }
+
+            
+        };
+
+    </script>
+
+
+</body>
+
+</html>

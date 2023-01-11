@@ -1,0 +1,104 @@
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+  <link href="image/todologo.png" rel="icon">
+  <title>Register</title>
+
+  <link rel="stylesheet" href="./registerstyle.css">
+  <script src="script/register.js"></script>
+</head>
+
+<body>
+
+  
+  <div class="wrapper">
+    <img src="./image/todologo.png" style="margin-left:185px; width: 90px;position:relative; margin-bottom: 20px; " alt="">
+    <h2 style="font-size: 40px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: black;">Register</h2>
+    <form method="POST" onsubmit="return registerFunction();">
+      <div class="form-group">
+        <input style="border: 3px solid black;border-radius: 10px;height: 50px;margin-top: 30px;" type="email" name="username" class="form-control" id="username"placeholder="Enter Your Email">
+        <br>
+      </div>
+      <div class="form-group">
+        <input style="border: 3px solid black;border-radius: 10px;height: 50px;"t type="password" name="password" class="form-control" id="password" placeholder="Enter Your Password">
+        <br>
+      </div>
+      <div class="form-group">
+        <input style="border: 3px solid black;border-radius: 10px;height: 50px;margin-top: 20px;"t type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Your Password">
+        <br>
+      </div>
+      <div class="form-group">
+        <input style="border: 3px solid black;margin-top: 30px;background-color: whitesmoke;color: black;border-radius: 8px;height: 50px;width: 130px;font-weight: 700;font-size: 20px;" type="submit" class="btn btn-primary" value="Register">
+      </div>
+      <p style="margin-left: 40px;margin-top:50px;color: black;text-decoration: none;font-size: 20px;">Already have an account? <a style="text-decoration: none;color: aliceblue;" href="index.html">Back to Login</a>.</p>
+    </form>
+  </div>
+  <script src="script/navbar.js"></script>
+  <script>
+    function registerFunction() {
+    const email = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const c_password = document.getElementById("confirm_password").value;
+
+    if (password != c_password) {
+        Swal.fire({
+            text: "Your password is not matching with confirm password",
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return false;
+    } else {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://dev.thanqminh.com:3000//auth");
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify({
+            "email": email,
+            "password": password
+        }));
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                const objects = JSON.parse(this.responseText);
+                if (this.status == 200) {
+                    Swal.fire({
+                        text: 'Register successful',
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'index.html';
+                        }
+                    });
+                } else {
+                    const array = objects["errors"]["full_messages"];
+                    let formattedSring = "";
+                    for (i = 0; i < array.length; i++) {
+                        formattedSring += array[i] + "." + "<br>";
+                    }
+                    Swal.fire({
+                        html: formattedSring,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        }
+        return false;
+    }
+}
+
+
+  </script>
+</body>
+
+</html>

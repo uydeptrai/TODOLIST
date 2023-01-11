@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Information</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="resetpass.css">
+
+    <!--  boostrap1 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="image/todologo.png" rel="icon">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <img src="./image/todologo.png" style="margin-left:185px; width: 90px;position:relative; margin-bottom: 20px; " alt="">
+        </header>
+        <div class="main">
+            <div class="main-center">
+                <p style="font-size: 40px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: black;">Reset Password </p>
+
+                <form class="" method="post" action="#">
+
+                    <div class="form-group">
+
+                        <div class="input-group">
+
+                            <input style="margin-top: 50px;border-radius: 10px;height: 55px;border: 3px solid black;" type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+
+                            <input style="border-radius: 10px;height: 55px;border: 3px solid black;" type="text" class="form-control" name="name" id="name" placeholder="Enter your Current Password" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+
+                            <input style="border-radius: 10px;height: 55px;border: 3px solid black;" type="text" class="form-control" name="name" id="name" placeholder="Enter your New Password" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+
+                            <input style="border-radius: 10px;height: 55px;border: 3px solid black;" type="text" class="form-control" name="name" id="name" placeholder="Confirm your New Password" />
+
+                        </div>
+                    </div>
+
+                    <button style="margin-top: 50px;background-color: whitesmoke;color: black;border-radius: 8px;height: 40px;width: 80px;font-weight: 700;font-size: 20px;" name="button" value="OK" type="button" onclick="cancel()">Cancel</button>
+                    <button style="background-color: whitesmoke;color: black;border-radius: 8px;height: 40px;width: 80px;font-weight: 700;font-size: 20px;" name="button" value="OK" type="button" onclick="hello()">Reset</button>
+
+                </form>
+            </div>
+            <!--main-center"-->
+        </div>
+        <!--main-->
+    </div>
+    <!--container-->
+
+    <script>
+        function cancel() {
+            alert("Cancel reset password successfully");
+            window.location.assign('todayschedule.html');
+
+        }
+    </script>
+    <script>
+        function hello() {
+            alert("Reset password successfully");
+            window.location.assign('todayschedule.html');
+        }
+    </script>
+
+</body>
+
+</html>

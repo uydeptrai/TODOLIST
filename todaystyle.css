@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: #717575;
+}
+.action-list{
+    list-style-type: none;
+}
+
+.taskedit{
+    margin-left: 20px;
+    list-style-type: none;
+    color: #000000;
+}
+.taskdelete{
+    margin-left: 20px;
+    color: #000000;
+    text-decoration: none;
+}
+.wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 120px auto;
+  background: #9d9f9f;
+  border-radius: 25px;
+  padding: 25px;
+}
+.wrapper header {
+  font-size: 30px;
+  font-weight: 550;
+  color: black;
+  letter-spacing: 1px;
+}
+.wrapper .inputField {
+  display: flex;
+  height: 45px;
+  width: 100%;
+  margin: 20px 0;
+}
+.inputField input {
+  width: 85%;
+  height: 100%;
+  outline: none;
+  border: 1px solid black;
+  font-size: 17px;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+.inputField button {
+  width: 90px;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: #000000;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  border-radius: 3px;
+  margin-left: 5px;
+  font-size: 22px;
+  font-weight: 300;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.inputField button.active {
+  opacity: 1;
+  pointer-events: auto;
+  /* Phần này lát mình sẽ thao tác bên Js nhé  */
+}
+
+.wrapper h4 {
+  margin-bottom: 20px;
+  color: rgba(35, 33, 33, 0.5);
+  letter-spacing: 1px;
+}
+.wrapper .todoList {
+  max-height: 400px;
+  overflow-y: auto;
+}
+.todoList li {
+  position: relative;
+  list-style: none;
+  width: 340px;
+  height: 60px;
+  background: #0000005e;
+  color: #ffffff;
+  padding: 0 15px;
+  line-height: 60px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  cursor: default;
+  overflow: hidden;
+}
+.todoList li i {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+.todoList li:hover i {
+  right: 0px;
+}
+.wrapper .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 25px;
+}
+.footer span {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.footer button {
+  border: none;
+  outline: none;
+  background: #060606;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 6px 15px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.footer button.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.span:hover{
+background-color: aqua;
+}
+
+
+
+
