@@ -31,6 +31,9 @@ const createTask = async () => {
 
 
 function taskListRequest() {
+    
+
+
 
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", `https://dev.thanqminh.com:3001/task_lists`);
@@ -167,5 +170,7 @@ function taskListRequest() {
         }
     };
 }
+
+
 
 
